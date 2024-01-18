@@ -6,7 +6,7 @@ class Server
  {
     public static void main(String[] args) throws Exception {
         System.out.println("Server Application is running....");
-        String s1, s2;
+        String str1, str2;
 
         ServerSocket ss = new ServerSocket(1100);
         Socket s = ss.accept();
@@ -14,20 +14,20 @@ class Server
         System.out.println("Connection successful...");
         PrintStream ps = new PrintStream(s.getOutputStream());
 
-        BufferedReader brk = new BufferedReader(new InputStreamReader(System.in));
-        BufferedReader br = new BufferedReader((new InputStreamReader(s.getInputStream())));
-        while ((s1 = br.readLine()) != null) {
-            System.out.println("Client says:" + s1);
+        BufferedReader br1 = new BufferedReader((new InputStreamReader(s.getInputStream())));
+        BufferedReader br2 = new BufferedReader(new InputStreamReader(System.in));
+        while ((str1 = br1.readLine()) != null) {
+            System.out.println("Client says:" + str1);
             System.out.println("Enter message for client");
 
-            s2 = brk.readLine();
-            ps.println(s2);
+            str2 = br2.readLine();
+            ps.println(str2);
         }
         s.close();
         ps.close();
         ss.close();
-        br.close();
-        brk.close();
+        br1.close();
+        br2.close();
 
     }
 }
